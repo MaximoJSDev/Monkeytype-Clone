@@ -1,0 +1,46 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* color-scheme: light dark; */
+  --green: #00b755;
+  --yellow: #daaf38;
+  --red: #ca4754;
+  --black: #323437;
+  --gray: #999;
+}
+
+body {
+  font-family: "Roboto Mono", monospace;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  background-color: var(--black);
+  color: #fff;
+}
+
+.nav {
+  width: 1536px;
+  padding-top: 32px;
+  margin: auto;
+}
+
+.nav a {
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+  text-decoration: none;
+  color: #fff;
+}
+
+.nav__titile {
+  font-size: 32px;
+  font-weight: 400;
+  align-items: center;
+  font-family: "Lexend Deca", sans-serif;
+}
