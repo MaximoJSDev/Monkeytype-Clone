@@ -63,11 +63,40 @@ const onkeyDown = (event) => {
     $currentWord.classList.add(classToAdd);
     return
   }
+  if (key === "Backspace") {
+    const $prevWord = $currentWord.previousElementSibling;
+    const $prevLetter = $currentLetter.previousElementSibling;
+
+    if (!$prevWord && !$prevLetter) {
+      event.preventDefault();
+      return;
+    }
+    const $wordMarked = $paragraph.querySelector("word.marked");
+    if($wordMarked && !$prevLetter) {
+      event.preventDefault();
+      $prevWord.classList.remove("marked");
+      $prevWord.classList.add("active");
+      
+      const $letterToGo = $prevWord.querySelector("letter:last-child");
+      console.log($letterToGo);
+      
+
+      $currentLetter.classList.remove("active");
+      $letterToGo.classList.add("active");
+
+      $input.value = [
+        ...$prevWord.querySelectorAll("letter.correct, letter.incorrect")
+      ].map($element => {
+        return $element.classList.contains("correct") ? $element.innerText : "*"
+      })
+      .join("");
+    }
+  }
 }
 
 const onkeyUp = () => {
   const $currentWord = $paragraph.querySelector("word.active");
-  const $currentLetter = $currentWord.querySelector("letter.active");
+  const $currentLetter = $currentWord?.querySelector("letter.active");
   const currentWord = $currentWord.textContent.trim().toLowerCase();
   $input.maxLength = currentWord.length;
 
